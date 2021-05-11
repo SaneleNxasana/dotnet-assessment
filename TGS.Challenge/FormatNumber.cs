@@ -26,7 +26,43 @@ namespace TGS.Challenge
     {
         public string Format(int value)
         {
-            return string.Empty;
+            const int limit = 1000000000;
+            if (value > limit || value < 0)
+            {
+                throw new ArgumentOutOfRangeException("value", "Value out of range.");
+            }
+
+            var stringValue = value.ToString();
+            if (stringValue.Length <= 3)
+            {
+                return stringValue;
+            }
+            else
+            {
+                var reversed = StringReverse(stringValue);
+                var x = InsertCommas(reversed);
+                return StringReverse(x);
+            }
+        }
+
+        private string StringReverse(string s)
+        {
+            char[] charArray = s.ToCharArray();
+            Array.Reverse(charArray);
+            return new string(charArray);
+        }
+
+        private string InsertCommas(string commas)
+        {
+            if (commas.Length <= 6)
+            {
+                return commas.Insert(3, ",");
+            }
+            else
+            {
+                var x = commas.Insert(3, ",");
+                return x.Insert(7, ",");
+            }
         }
     }
 }
