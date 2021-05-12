@@ -24,44 +24,54 @@ namespace TGS.Challenge
      */
     public class FormatNumber
     {
+        private static readonly int S_UpperLimit = 1000000000;
+        private static readonly int S_LowerLimit = 0;
+
         public string Format(int value)
         {
-            const int limit = 1000000000;
-            if (value > limit || value < 0)
+            //Input Validation
+            if (value > S_UpperLimit || value < S_LowerLimit)
             {
                 throw new ArgumentOutOfRangeException("value", "Value out of range.");
             }
 
             var stringValue = value.ToString();
+
+            //If string length is less or equal to 3 return, else process
             if (stringValue.Length <= 3)
             {
                 return stringValue;
             }
             else
             {
-                var reversed = StringReverse(stringValue);
-                var x = InsertCommas(reversed);
-                return StringReverse(x);
+                //Reverse string and add commas
+                var reversedString = StringReverse(stringValue);
+                var formattedString = InsertCommas(reversedString);
+
+                //Reverse string back to normal
+                return StringReverse(formattedString);
             }
         }
 
-        private string StringReverse(string s)
+        private string StringReverse(string inputString)
         {
-            char[] charArray = s.ToCharArray();
+            var charArray = inputString.ToCharArray();
             Array.Reverse(charArray);
+
             return new string(charArray);
         }
 
-        private string InsertCommas(string commas)
+        private string InsertCommas(string formatString)
         {
-            if (commas.Length <= 6)
+            if (formatString.Length <= 6)
             {
-                return commas.Insert(3, ",");
+                return formatString.Insert(3, ",");
             }
             else
             {
-                var x = commas.Insert(3, ",");
-                return x.Insert(7, ",");
+                var addSecondComma = formatString.Insert(3, ",");
+
+                return addSecondComma.Insert(7, ",");
             }
         }
     }
