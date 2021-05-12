@@ -15,19 +15,21 @@ namespace TGS.Challenge
      */
     public class VowelCount
     {
+        private static readonly List<char> S_Vowels = new List<char> { 'a', 'e', 'i', 'o', 'u' };
+
         public int Count(string value)
         {
-            if (value == null || value == "")
+            //Input Validation
+            if (value == string.Empty)
             {
                 throw new ArgumentException("value is empty.");
             }
 
-            var S_Vowels = new List<char> { 'a', 'e', 'i', 'o', 'u' };
-            var vowelCount = 0;
-            
-            foreach (char c in value.ToLower())
+            //Loop though the given value and count the number of vowels
+            var vowelCount = 0;            
+            foreach (char character in value.ToLower())
             {
-                if (S_Vowels.Contains(c))
+                if (S_Vowels.Contains(character))
                 {
                     vowelCount++;
                 }
