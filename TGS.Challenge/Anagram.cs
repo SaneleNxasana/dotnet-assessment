@@ -1,4 +1,6 @@
 using System;
+using System.Text;
+using System.Text.RegularExpressions;
 
 namespace TGS.Challenge
 {
@@ -32,8 +34,11 @@ namespace TGS.Challenge
                 throw new ArgumentException("Words cannot be null or empty");
             }
 
+            var a = WordProcessor(word1);
+            var b = WordProcessor(word2);
+
             //Compare strings to check if words are Anagram or not
-            return WordProcessor(word1) == WordProcessor(word2);
+            return a == b;
         }
 
         private string WordProcessor(string word)
@@ -43,9 +48,19 @@ namespace TGS.Challenge
 
             //Sort characters in array
             Array.Sort(wordFormatted);
+            var newWord = new string(wordFormatted);
 
-            //Convert char array back to string
-            return new string(wordFormatted);
+            //Remove punctuation
+            var sb = new StringBuilder();
+            foreach (char c in newWord)
+            {
+                if (!char.IsPunctuation(c))
+                {
+                    sb.Append(c);
+                }
+            }
+
+            return sb.ToString();
         }
     }
 }

@@ -28,7 +28,7 @@ namespace TGS.Challenge.Tests
     [Test()]
     public void Dormitory_IsAnagram_Dirty_room()
     {
-      var result = _anagram.AreAnagrams("Dormitory", "Dirty room");
+      var result = _anagram.AreAnagrams("Dormitory", "Dirty_room");
 
       Assert.IsTrue(result);
     }
