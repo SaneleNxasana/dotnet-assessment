@@ -26,24 +26,26 @@ namespace TGS.Challenge
     {
         public bool AreAnagrams(string word1, string word2)
         {
+            //Input Validation
             if ((word1 == string.Empty) || (word2 == string.Empty))
             {
                 throw new ArgumentException("Words cannot be null or empty");
             }
 
-            var word1Formatted = word1.ToLower().Replace(" ", "");
-            var word2Formatted = word2.ToLower().Replace(" ", "");
+            //Compare strings to check if words are Anagram or not
+            return WordProcessor(word1) == WordProcessor(word2);
+        }
 
-            var word1CharArray = word1Formatted.ToCharArray();
-            var word2CharArray = word2Formatted.ToCharArray();
+        private string WordProcessor(string word)
+        {
+            //Remove white/blank spaces; Convert word to lowercase; Convert to char array for sorting
+            var wordFormatted = word.Replace(" ", "").ToLower().ToCharArray();
 
-            Array.Sort(word1CharArray);
-            Array.Sort(word2CharArray);
+            //Sort characters in array
+            Array.Sort(wordFormatted);
 
-            var word1ToString = new string(word1CharArray);
-            var word2ToString = new string(word2CharArray);
-
-            return word1ToString == word2ToString;
+            //Convert char array back to string
+            return new string(wordFormatted);
         }
     }
 }
