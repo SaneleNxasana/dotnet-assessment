@@ -35,9 +35,8 @@ namespace TGS.Challenge
                 throw new ArgumentOutOfRangeException("value", "Value out of range.");
             }
 
-            var stringValue = value.ToString();
-
             //If string length is less or equal to 3 return, else process
+            var stringValue = value.ToString();
             if (stringValue.Length <= 3)
             {
                 return stringValue;
@@ -70,7 +69,6 @@ namespace TGS.Challenge
             else
             {
                 var addSecondComma = formatString.Insert(3, ",");
-
                 return addSecondComma.Insert(7, ",");
             }
         }

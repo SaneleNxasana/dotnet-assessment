@@ -1,6 +1,5 @@
 using System;
 using System.Text;
-using System.Text.RegularExpressions;
 
 namespace TGS.Challenge
 {
@@ -34,11 +33,12 @@ namespace TGS.Challenge
                 throw new ArgumentException("Words cannot be null or empty");
             }
 
-            var a = WordProcessor(word1);
-            var b = WordProcessor(word2);
+            //Process given words
+            var wordA = WordProcessor(word1);
+            var wordB = WordProcessor(word2);
 
             //Compare strings to check if words are Anagram or not
-            return a == b;
+            return wordA == wordB;
         }
 
         private string WordProcessor(string word)
@@ -46,7 +46,7 @@ namespace TGS.Challenge
             //Remove white/blank spaces; Convert word to lowercase; Convert to char array for sorting
             var wordFormatted = word.Replace(" ", "").ToLower().ToCharArray();
 
-            //Sort characters in array
+            //Sort characters in array and convert back to string
             Array.Sort(wordFormatted);
             var newWord = new string(wordFormatted);
 
